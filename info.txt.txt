@@ -1,0 +1,9 @@
+RISPETTATE QUESTA STRUTTURA PER INSERIRE I VOSTRI DATI
+
+STUDENTE 1:
+nome cognome
+mail
+matricola
+
+STUDENTE 2:
+....
