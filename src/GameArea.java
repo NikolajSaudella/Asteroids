@@ -88,6 +88,7 @@ public class GameArea extends JPanel implements ActionListener, KeyListener {
 
     private JButton homeButton;
     private JButton settingsButton;
+    private JButton infoButton;
 
     private final Timer timer;
     /*
@@ -117,18 +118,25 @@ public class GameArea extends JPanel implements ActionListener, KeyListener {
 
         homeButton = new JButton("HOME");
         settingsButton = new JButton("SETTINGS");
+        infoButton = new JButton("INFO COMANDI");
 
-        homeButton.setBounds(WIDTH / 2 - 110, HEIGHT / 2 + 30, 100, 40);
-        settingsButton.setBounds(WIDTH / 2 + 10, HEIGHT / 2 + 30, 120, 40);
+        // 3 bottoni centrati orizzontalmente, affiancati
+        int btnY = HEIGHT / 2 + 30;
+        homeButton.setBounds(WIDTH / 2 - 175, btnY, 110, 40);
+        settingsButton.setBounds(WIDTH / 2 - 55, btnY, 110, 40);
+        infoButton.setBounds(WIDTH / 2 + 65, btnY, 140, 40);
 
         homeButton.setFocusable(false);
         settingsButton.setFocusable(false);
+        infoButton.setFocusable(false);
 
         homeButton.setVisible(false);
         settingsButton.setVisible(false);
+        infoButton.setVisible(false);
 
         add(homeButton);
         add(settingsButton);
+        add(infoButton);
 
         asteroids = new ArrayList<>();
         bullets = new ArrayList<>();
@@ -152,7 +160,33 @@ public class GameArea extends JPanel implements ActionListener, KeyListener {
         });
 
         settingsButton.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Schermata impostazioni");
+            JOptionPane.showMessageDialog(
+                this,
+                "Nessuna impostazione disponibile per ora.",
+                "Impostazioni",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+        });
+
+        infoButton.addActionListener(e -> {
+            String comandi =
+                "╔══════════════════════════════╗\n" +
+                "║       COMANDI DI GIOCO       ║\n" +
+                "╠══════════════════════════════╣\n" +
+                "║  ← / A     Ruota a sinistra  ║\n" +
+                "║  → / D     Ruota a destra    ║\n" +
+                "║  ↑ / W     Accelera          ║\n" +
+                "║  SPAZIO    Spara             ║\n" +
+                "║  P / ESC   Pausa             ║\n" +
+                "║  R         Ricomincia        ║\n" +
+                "╚══════════════════════════════╝";
+
+            JOptionPane.showMessageDialog(
+                this,
+                comandi,
+                "Info Comandi",
+                JOptionPane.PLAIN_MESSAGE
+            );
         });
 
         soundPlayer = new SoundPlayer();
@@ -202,6 +236,7 @@ public class GameArea extends JPanel implements ActionListener, KeyListener {
     private void updatePauseButtons() {
         homeButton.setVisible(paused);
         settingsButton.setVisible(paused);
+        infoButton.setVisible(paused);
     }
 
     /*
